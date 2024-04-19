@@ -1,0 +1,26 @@
+
+
+.signin__body{
+    width: 400px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.sign__form{
+    display: flex;
+
+    flex-direction: column;
+    gap:16px;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+    border-radius: 16px;
+    padding: 1rem;
+    -webkit-box-shadow: -1px -1px 16px 3px rgba(201,169,233,1);
+    -moz-box-shadow: -1px -1px 16px 3px rgba(201,169,233,1);
+    box-shadow: -1px -1px 16px 3px rgba(201,169,233,1);
+}
+
+.sign__text{
+    font-size: 2rem;
+}
