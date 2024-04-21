@@ -4,14 +4,21 @@ ZKProof Portal is a decentralized marketplace for zero-knowledge proofs where de
 On the other side, provers place a collateral bid when responding to a proof request, which acts as a guarantee of their commitment and a form of quality assurance for the developer. If a prover fails to deliver the proof within the agreed timeframe, or if the proof fails to meet the specified requirements, a portion of this collateral is forfeited, serving as a penalty. Additionally, such failures result in a downgrade of the prover’s rating, affecting their ability to secure future proof requests and potentially reducing their earning capability on the platform.
 
 ### Problems with traditional zkProof generation:-
-1.Computational Intensiveness: The generation of zero-knowledge proofs, particularly for systems like zkRollups, remains computationally intensive despite recent advancements in cryptography and hardware. This leads to significant processing demands, often requiring powerful and specialized hardware to perform the proofs efficiently.
-2. Centralization Risks: Many current systems rely on centralized proving structures. This centralization can introduce risks such as censorship and points of failure, which can compromise the integrity and resilience of the system. 
-3. Cost and Scalability: Generating ZK proofs is not only resource-intensive but also costly. The infrastructure required for high-performance proving can be expensive to maintain and scale, particularly as the demand for ZK applications grows.
+###### 1.Computational Intensiveness: 
+The generation of zero-knowledge proofs, particularly for systems like zkRollups, remains computationally intensive despite recent advancements in cryptography and hardware. This leads to significant processing demands, often requiring powerful and specialized hardware to perform the proofs efficiently.
+
+###### 2. Centralization Risks:
+Many current systems rely on centralized proving structures. This centralization can introduce risks such as censorship and points of failure, which can compromise the integrity and resilience of the system. 
+###### 3. Cost and Scalability:
+Generating ZK proofs is not only resource-intensive but also costly. The infrastructure required for high-performance proving can be expensive to maintain and scale, particularly as the demand for ZK applications grows.
 
 ### Why do we need Decentralized Prover Markets?
-1.Liveness: Multiple provers ensure that the protocol operates reliably and doesn’t face downtime if some provers are temporarily unavailable.
-2.Censorship Resistance: Having more provers improves censorship resistance. A small prover set could refuse to prove certain types of transactions.
-3.Competition: A larger prover set can strengthen market pressures for operators to create faster and cheaper proofs.
+###### 1.Liveness: 
+Multiple provers ensure that the protocol operates reliably and doesn’t face downtime if some provers are temporarily unavailable.
+###### 2.Censorship Resistance:
+Having more provers improves censorship resistance. A small prover set could refuse to prove certain types of transactions.
+###### 3.Competition:
+A larger prover set can strengthen market pressures for operators to create faster and cheaper proofs.
 
 ### System Architecture:-
 Untitled-2024-04-21-1256
