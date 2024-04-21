@@ -39,7 +39,8 @@ Contracts have been deployed on:-
 ##### Avail powered OP stack chain:-
 Hash: 0xd5c1aaa1c1a88e8e3896c300b0b09d28f10e05fe2a89f8df23345d998a54e3f1 Contract Address: 0x80CE15ab7d4975ac9A8FD4829F679c1c0d17def0
 Hash: 0x8f7104d7cdbf90f5def49182c06e43317ff87c85e2fc1b2eee4851c2f2e13836 Contract Address: 0x36C791a2eb5071366d569788653AC6acFa6C6E87
-Stylus testnet:-
+
+##### Stylus testnet:-
 Deployed to:- 0x7Ce2CF254650bA355D0F534281d36fda38808A09
 
 ##### Gnosis Chain testnet:-
