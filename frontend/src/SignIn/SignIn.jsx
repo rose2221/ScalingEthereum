@@ -1,7 +1,6 @@
 import { Input } from "@nextui-org/react";
 import { Button } from "@nextui-org/react";
 import { Link } from "react-router-dom";
-import { div } from "three/examples/jsm/nodes/Nodes.js";
 
 export default function SignIn() {
   return (
@@ -14,7 +13,7 @@ export default function SignIn() {
     <Input type="password" placeholder="Password" variant="bordered" style={{borderColor:'#ffffff',color:'white'}}  className="inputClassName"/>
 
       <Link to="/">
-      <Button color='primary' variant="solid" size = "lg">
+      <Button className="bg-[#e11d48]" variant="solid" size = "lg">
         Sign In
       </Button>
       </Link>

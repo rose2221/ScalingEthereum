@@ -107,9 +107,13 @@ function Hero({visible , signOutVisible}) {
        </div>
         <div className='w-[94vw]  h-[40vw] z-555 hero__content absolute flex flex-row'>
             <div className='hero__child'>
-                <h1 className='title'>Lorem Ipsum Dolor Sit Amet</h1>
-                {!visible ? <Button color='primary' className="font-500">Become a Prove</Button> : null}
-               {!visible ? <Link to='/request'><Button color='primary' className="font-500">Submit a Prove Request</Button></Link>  : null}
+                <h1 className='title'>ZK Proof Portal</h1>
+                <h2 className='title2 '>Orderbook of Prover Market</h2>
+              <div className='flex flex-row gap-8'>
+
+                {!visible ? <Link to='/prove'><Button  className="font-500 bg-[#e11d48] text-white">Become a Prover</Button></Link> : null}
+               {!visible ? <Link to='/request'><Button  className="font-500 bg-[#e11d48] text-white">Submit a Prove Request</Button></Link>  : null}
+              </div>
             </div>
             <div className='hero__child'></div>
         </div>         

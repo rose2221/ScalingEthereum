@@ -19,6 +19,7 @@
     display: flex;
     justify-content: start;
     align-items: start;
+    flex-direction: row;
     color: white;
     font-weight: 500;
     padding: 2rem;
@@ -32,9 +33,24 @@
 .title{
 
     background: #6D42EF;
-    background: linear-gradient(to left, #c800fa 0%, #016FEE 100%);
+    background: linear-gradient(to left,#ffffff 0%,  #e11d48 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
+    font-weight: 600;
+    font-size: 90px;
+     
+      
+}
+
+
+
+ 
+.title2{
+
+    
+    color: white;
+    font-weight: 600;
+    font-size: 32px;
      
       
 }

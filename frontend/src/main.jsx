@@ -7,6 +7,8 @@ import SignIn from '../src/SignIn/SignIn.jsx'
 import SignUp from '../src/SignUp/SignUp.jsx'
 import Nav from '../src/Nav/Nav.jsx'
 import Request from '../src/Request/Request.jsx'
+import Prove from '../src/Prove/Prove.jsx'
+import '../src/Prove/prove.css'
 import '../src/SignUp/signup.css'
 import '../src/SignIn/signin.css'
 import './normalize.css'
@@ -35,6 +37,13 @@ const router = createBrowserRouter([
     element: <>
       <Nav />
       <Request />
+    </>,
+  },
+  {
+    path: "/prove",
+    element: <>
+      <Nav />
+      <Prove />
     </>,
   },
 ]);

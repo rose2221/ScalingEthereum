@@ -9,14 +9,29 @@
 
 .active__table{
     background-color: #070713;
-    color: white;
+    color: #8E8F9E;
+    height: 200px;
+    overflow-y: auto;
 }
 
 .submit__input{
     color:white;
     background-color: #070713;
     height: 50px;
-    border:2px solid #016FEE;
+    border:2px solid #ffffff;
+    outline: none;
+    padding-left: 8px;
+    border-radius: 8px;
+
+
+    
+}
+
+.submit__input2{
+    color:white;
+    background-color: #070713;
+    height: 150px;
+    border:2px solid #ffffff;
     outline: none;
     padding-left: 8px;
     border-radius: 8px;

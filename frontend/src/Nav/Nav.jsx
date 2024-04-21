@@ -2,30 +2,48 @@ import { useState ,useEffect } from "react";
 import {Navbar, NavbarBrand, NavbarContent, NavbarItem,  Button , Avatar} from "@nextui-org/react";
 import { Link } from "react-router-dom";
 import avatar from '../assets/avatar.jpg'
+import logo from '../assets/logo.png'
 function Nav({visible , handleRegister , handleSignIn , signOutVisible}) {
 
     return (
       <>
        <div>
        <Navbar className="bg-[#000000]" isBordered maxWidth="full">
-      <NavbarBrand justify="end">
-        {/* <AcmeLogo /> */}
-        <p className="font-bold text-inherit text-white">ACME</p>
+    <Link to='/'>
+      <NavbarBrand justify="start" className="mr-[8-rem]">
+         <img src={logo} alt="" className="w-[36px] h-[36px]"/>
+        <p className="font-bold text-inherit text-white">ZKProof Portal</p>
       </NavbarBrand>
-      <NavbarContent className="hidden sm:flex gap-4" justify="start">
-        <NavbarItem className="text-[#1e40af]">
+    </Link>
+      <NavbarContent className="hidden sm:flex gap-16" justify="end">
+        <NavbarItem className="text-[#fb7185]">
           <Link href="#">
-            Features
+            Home
           </Link>
         </NavbarItem>
-        <NavbarItem className="text-[#1e40af]">
+        <NavbarItem className="text-[#fb7185]">
           <Link href="#" aria-current="page">
-            Customers
+            About
           </Link>
         </NavbarItem>
-        <NavbarItem className="text-[#1e40af]">
+        <NavbarItem className="text-[#fb7185]">
           <Link href="#" >
-            Integrations
+            Orderbook
+          </Link>
+        </NavbarItem>
+        <NavbarItem className="text-[#fb7185]">
+          <Link href="#" >
+            Provers
+          </Link>
+        </NavbarItem>
+        <NavbarItem className="text-[#fb7185]">
+          <Link href="#" >
+            How it Works
+          </Link>
+        </NavbarItem>
+        <NavbarItem className="text-[#fb7185]">
+          <Link href="#" >
+            Contacts
           </Link>
         </NavbarItem>
       </NavbarContent>
@@ -34,13 +52,13 @@ function Nav({visible , handleRegister , handleSignIn , signOutVisible}) {
           {!visible ?
           <div className="flex flex-row gap-2"> 
           <Avatar src={avatar} />
-          <Button className="settings__button" size="md" onClick={signOutVisible} color="primary">
+          <Button className="settings__button bg-[#e11d48] text-white" size="md" onClick={signOutVisible} >
               Sign Out
             </Button></div> : null}
-          {visible ? <Button className="settings__button" size="md" onClick={handleSignIn} color="primary">
+          {visible ? <Button className="settings__button bg-[#e11d48] text-white" size="md" onClick={handleSignIn} color="primary">
               Sign In
             </Button> : null}
-          {visible ? <Button className="settings__button" size="md" onClick={handleRegister} color='primary'>
+          {visible ? <Button className="settings__button bg-[#e11d48] text-white" size="md" onClick={handleRegister} color='primary'>
               Register
             </Button> : null}
         </div>
