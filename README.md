@@ -15,6 +15,7 @@ On the other side, provers place a collateral bid when responding to a proof req
 
 ### System Architecture:-
 Untitled-2024-04-21-1256
+![Untitled-2024-02-17-1704](https://github.com/PriviChainEx/.github/assets/101273941/ccf14db6-5607-4350-bce8-5c490d265769)
 
 1. Order Submission:
 Users submit buy or sell orders via the user interface.
