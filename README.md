@@ -45,15 +45,16 @@ All transaction data is posted to Avail to ensure that it remains accessible and
 Contracts have been deployed on:-
 
 ##### Avail powered OP stack chain:-
-Hash: 0xd5c1aaa1c1a88e8e3896c300b0b09d28f10e05fe2a89f8df23345d998a54e3f1 Contract Address: 0x80CE15ab7d4975ac9A8FD4829F679c1c0d17def0
-Hash: 0x8f7104d7cdbf90f5def49182c06e43317ff87c85e2fc1b2eee4851c2f2e13836 Contract Address: 0x36C791a2eb5071366d569788653AC6acFa6C6E87
+1. Hash: 0xd5c1aaa1c1a88e8e3896c300b0b09d28f10e05fe2a89f8df23345d998a54e3f1 Contract Address: 0x80CE15ab7d4975ac9A8FD4829F679c1c0d17def0
+2. Hash: 0x8f7104d7cdbf90f5def49182c06e43317ff87c85e2fc1b2eee4851c2f2e13836 Contract Address: 0x36C791a2eb5071366d569788653AC6acFa6C6E87
 
 ##### Stylus testnet:-
 Deployed to:- 0x7Ce2CF254650bA355D0F534281d36fda38808A09
 
 ##### Gnosis Chain testnet:-
-1.Deployed to: 0x7Ce2CF254650bA355D0F534281d36fda38808A09 Transaction hash: 0x2599920982422b4c4cae352c96249bc0ad7d2c098ebc342b7d6b48746178d433 2. Deployed to: 0x36045AD1979d7d0E1679F6D799AaC4AB5ff54698 Transaction hash: 0xe59cf2be155c107a1d74edf8e1edf8f8c6386c0ab1b37f631576c4eee672da29
+1.Deployed to: 0x7Ce2CF254650bA355D0F534281d36fda38808A09 Transaction hash: 0x2599920982422b4c4cae352c96249bc0ad7d2c098ebc342b7d6b48746178d433
+2. Deployed to: 0x36045AD1979d7d0E1679F6D799AaC4AB5ff54698 Transaction hash: 0xe59cf2be155c107a1d74edf8e1edf8f8c6386c0ab1b37f631576c4eee672da29
 
 ##### Morph testnet:-
-Hash: 0x9e4e4c2ce67c764d5080d41c6ac83ce914474e3ac47128255f3a1f547eecd2ed Contract Address: 0x36045AD1979d7d0E1679F6D799AaC4AB5ff54698
-Hash: 0x207b78b918e81a84b8e471707b67f0e86ab31ed14915f8dc1125fefb608df6d7 Contract Address: 0x80CE15ab7d4975ac9A8FD4829F679c1c0d17def0
+1. Hash: 0x9e4e4c2ce67c764d5080d41c6ac83ce914474e3ac47128255f3a1f547eecd2ed Contract Address: 0x36045AD1979d7d0E1679F6D799AaC4AB5ff54698
+2. Hash: 0x207b78b918e81a84b8e471707b67f0e86ab31ed14915f8dc1125fefb608df6d7 Contract Address: 0x80CE15ab7d4975ac9A8FD4829F679c1c0d17def0
