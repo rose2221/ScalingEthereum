@@ -35,7 +35,7 @@ Rollup nodes collect incoming orders, batch them for processing, and run the mat
 Once orders are matched, the rollup node computes the new state of the order book. RISC Zero’s zkVM generates a zero-knowledge proof to verify the correctness of the order matching process.
 
 4. Proof and Order Data Submission to Ethereum:
-Matched orders and their proofs are submitted to the order matching and orderbook contract on the Ethereum blockchain.
+Matched orders and their proofs are submitted to the order matching and orderbook contract on the various chains i.e :- Avail powered OP stack chain, Strylus testnet, Gnosis chain tesnter, Morph testnet.
 
 5. Orderbook Matching and Orderbook:-
 Contract manages the order book, handles the logic for matching buy and sell proofs, and ensures that all trades are executed according to predefined rules.
