@@ -1,64 +1,74 @@
-
+use serde::{Serialize, Deserialize};
+use anyhow::Result;
 use risc0_zkvm::{
-    serde::{from_slice, to_vec},
-    Executor, ExecutorEnv, 
+    serde::{to_vec},
+    ExecutorEnv, Executor,
     // ...
 };
-use serde::{Deserialize, Serialize};
-use anyhow::Result;
 
-use crate::guest::*;
-
-#[derive(Serialize, Deserialize)]
-struct MatchingInputs {
-    buys: Vec<Order>,
-    sells: Vec<Order>,
-    proposals: Vec<MatchProposal>,
+#[derive(Debug, Serialize, Deserialize)]
+struct DeveloperRequest {
+    rating_required: u64,
+    budget: u64,
 }
 
-fn generate_order_matching_proof(inputs: MatchingInputs) -> Result<()> {
+#[derive(Debug, Serialize, Deserialize)]
+struct ProverBid {
+    rating: u64,
+    requested_fee: u64,
+    collateral: u64,
+}
 
-    let env = ExecutorEnv::builder()
-        .add_input(&to_vec(&inputs).unwrap())  // Serialize data
-        .build()?;
+#[derive(Debug, Serialize, Deserialize)]
+struct MatchProposal {
+    dev_index: usize,
+    prover_index: usize,
+}
 
-    let method_elf = include_bytes!("../../guest/target/riscv32imac-unknown-none-elf/release/order_matching_proof");
-    
-
-    let mut executor = Executor::from_elf(env, method_elf)?;
-    let session = executor.run()?;
-
-
-    let receipt = session.prove()?;
-
-
-    receipt.verify(method_id!())?; 
-
-
-    println!("Proof generated and verified successfully!");
-    Ok(())
+#[derive(Debug, Serialize, Deserialize)]
+struct MatchingInputs {
+    dev_requests: Vec<DeveloperRequest>,
+    prover_bids: Vec<ProverBid>,
+    match_proposals: Vec<MatchProposal>,
 }
 
 fn main() -> Result<()> {
-
+    // 1. Build example input
     let inputs = MatchingInputs {
-        buys: vec![
-            Order { price: 100, quantity: 10, order_id: 1 },
-            Order { price: 95, quantity: 5, order_id: 2 },
+        dev_requests: vec![
+            DeveloperRequest { rating_required: 80, budget: 500 },
         ],
-        sells: vec![
-            Order { price: 90, quantity: 7, order_id: 3 },
-            Order { price: 101, quantity: 12, order_id: 4 },
+        prover_bids: vec![
+            ProverBid { rating: 85, requested_fee: 400, collateral: 50 },
         ],
-        proposals: vec![
-            MatchProposal { buy_index: 0, sell_index: 0, match_quantity: 5 },
-            MatchProposal { buy_index: 1, sell_index: 1, match_quantity: 3 },
+        match_proposals: vec![
+            MatchProposal { dev_index: 0, prover_index: 0 },
         ],
     };
 
 
-    generate_order_matching_proof(inputs)?;
+    let serialized_input = to_vec(&inputs)?;
+
+ 
+    let env = ExecutorEnv::builder().add_input(&serialized_input).build()?;
+
+
+    let circuit_elf = include_bytes!("../../guest/target/riscv32imac-unknown-none-elf/release/matching_proof");
+    let mut exec = Executor::from_elf(env, circuit_elf)?;
+
+
+    let session = exec.run()?;
+
+
+    let receipt = session.prove()?;
+    println!("Proof generated successfully!");
+
+
+    receipt.verify(/* method_id here */)?;
+
+    println!("Proof verified successfully!");
     Ok(())
 }
+
 
 
