@@ -1,36 +1,64 @@
-use risc0_zkvm::{default_prover, ExecutorEnv, MethodId};
-use prover_system_methods::{PROVER_GUEST_ELF, PROVER_GUEST_ID};
 
-fn main() {
-    let proof = Proof {
-        id: 1,
-        provertitle: "Proof of Work".to_string(),
-        description: "Verifying computations".to_string(),
-        computation_details: "Computation steps".to_string(),
-        deadline: 20210101,
-        prooftype: "Verification".to_string(),
-        min_rating: 3,
-        bid: 500,
-    };
+use risc0_zkvm::{
+    serde::{from_slice, to_vec},
+    Executor, ExecutorEnv, 
+    // ...
+};
+use serde::{Deserialize, Serialize};
+use anyhow::Result;
 
-    let prover = ProverIdentity {
-        prover_id: 2,
-        prover_ratings: 4,
-    };
+use crate::guest::*;
+
+#[derive(Serialize, Deserialize)]
+struct MatchingInputs {
+    buys: Vec<Order>,
+    sells: Vec<Order>,
+    proposals: Vec<MatchProposal>,
+}
+
+fn generate_order_matching_proof(inputs: MatchingInputs) -> Result<()> {
 
     let env = ExecutorEnv::builder()
-        .write(&proof)
-        .unwrap()
-        .write(&prover)
-        .unwrap()
-        .build()
-        .unwrap();
+        .add_input(&to_vec(&inputs).unwrap())  // Serialize data
+        .build()?;
 
-    let prover = default_prover();
+    let method_elf = include_bytes!("../../guest/target/riscv32imac-unknown-none-elf/release/order_matching_proof");
+    
 
-    let receipt = prover.prove(env, PROVER_GUEST_ELF).unwrap();
-    let output: u32 = receipt.journal.decode().unwrap();
+    let mut executor = Executor::from_elf(env, method_elf)?;
+    let session = executor.run()?;
 
-    println!("Prover system execution proof: Proof ID {} is valid.", output);
+
+    let receipt = session.prove()?;
+
+
+    receipt.verify(method_id!())?; 
+
+
+    println!("Proof generated and verified successfully!");
+    Ok(())
 }
+
+fn main() -> Result<()> {
+
+    let inputs = MatchingInputs {
+        buys: vec![
+            Order { price: 100, quantity: 10, order_id: 1 },
+            Order { price: 95, quantity: 5, order_id: 2 },
+        ],
+        sells: vec![
+            Order { price: 90, quantity: 7, order_id: 3 },
+            Order { price: 101, quantity: 12, order_id: 4 },
+        ],
+        proposals: vec![
+            MatchProposal { buy_index: 0, sell_index: 0, match_quantity: 5 },
+            MatchProposal { buy_index: 1, sell_index: 1, match_quantity: 3 },
+        ],
+    };
+
+
+    generate_order_matching_proof(inputs)?;
+    Ok(())
+}
+
 
