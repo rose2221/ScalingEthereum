@@ -1,64 +1,69 @@
+#![no_main]
+#![no_std]
 
-#![no_main]         
-#![no_std]           
 extern crate riscv_std; 
-use core::panic;
-
 use riscv_std::println;
 
 use risc0_zkvm_guest::{env, entry};
+use serde::Deserialize;
 
 
-#[derive(Debug, serde::Deserialize)]
-pub struct Order {
-    pub price: u64,
-    pub quantity: u64,
-    pub order_id: u64,
+#[derive(Debug, Deserialize)]
+pub struct DeveloperRequest {
+    pub rating_required: u64,
+    pub budget: u64,
+    // Potentially more fields like complexity, deadline, etc.
+}
+
+#[derive(Debug, Deserialize)]
+pub struct ProverBid {
+    pub rating: u64,
+    pub requested_fee: u64,
+    // Optionally, we can track collateral or other metrics
+    pub collateral: u64,
 }
 
 
-#[derive(Debug, serde::Deserialize)]
+#[derive(Debug, Deserialize)]
 pub struct MatchProposal {
-
-    pub buy_index: usize,
-    pub sell_index: usize,
-    pub match_quantity: u64,
+    pub dev_index: usize,
+    pub prover_index: usize,
 }
 
 
-#[derive(Debug, serde::Deserialize)]
+#[derive(Debug, Deserialize)]
 pub struct MatchingInputs {
-    pub buys: Vec<Order>,
-    pub sells: Vec<Order>,
-    pub proposals: Vec<MatchProposal>,
+    pub dev_requests: Vec<DeveloperRequest>,
+    pub prover_bids: Vec<ProverBid>,
+    pub match_proposals: Vec<MatchProposal>,
 }
 
 #[entry]
 pub fn main() {
-
+    
     let inputs: MatchingInputs = env::read();
 
+ 
+    for proposal in inputs.match_proposals.iter() {
+        let dev_req = &inputs.dev_requests[proposal.dev_index];
+        let prover = &inputs.prover_bids[proposal.prover_index];
 
-    for proposal in &inputs.proposals {
-        let buy_order = &inputs.buys[proposal.buy_index];
-        let sell_order = &inputs.sells[proposal.sell_index];
-
-
-        if buy_order.price < sell_order.price {
-            panic!("Invalid match: buy price < sell price");
+  
+        if prover.rating < dev_req.rating_required {
+            panic!("Match invalid: Prover rating is below the required threshold.");
         }
 
-
-        if proposal.match_quantity > buy_order.quantity {
-            panic!("Invalid match: match quantity exceeds buy order quantity");
-        }
-        if proposal.match_quantity > sell_order.quantity {
-            panic!("Invalid match: match quantity exceeds sell order quantity");
+ 
+        if prover.requested_fee > dev_req.budget {
+            panic!("Match invalid: Prover fee exceeds developer's budget.");
         }
 
-
+        if prover.collateral == 0 {
+            panic!("Match invalid: Prover has no collateral staked.");
+        }
     }
 
-    println!("All proposed matches are valid under the given rules.");
+
+    println!("All proposed matches satisfy the constraints.");
 }
 
