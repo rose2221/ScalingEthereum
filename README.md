@@ -1,4 +1,4 @@
-# ZKProof Portal
+# ZKProof Porta
 ZKProof Portal is decentralized marketplace for zero-knowledge proofs where developers can post tasks requiring secure, private verification, and provers can submit proofs in exchange for rewards. Developers, who need zk proofs to validate transactions or data without exposing underlying information, submit requests detailing their specific proof requirements, such as the type of proof, computational complexity, deadline, and budget. These requests are then listed in a public orderbook, allowing developers to broadcast their needs to a wide network of potential provers. also the minimum rating a prover must have to bid on the project. 
 ##### This rating system, based on past performance metrics like accuracy, timeliness, and client feedback, helps ensure that only qualified provers can undertake certain complex or high-value proofs. Developers might offer higher compensation for provers with superior ratings, reflecting the premium placed on proven reliability and expertise.
 
