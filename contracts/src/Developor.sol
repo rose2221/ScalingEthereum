@@ -1,51 +1,74 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.18;
 
-contract Proverregistry {
+contract ProverRegistry {
     struct Proof {
-        uint256 id;  // Added to store the ID explicitly
-        string provertitle;
+        uint256 id;
+        string title;
         string description;
-        string computation_details;
+        string computationDetails;
         uint256 deadline;
-        string prooftype;
-        uint256 min_rating;
+        string proofType;
+        uint256 minRating;
         uint256 bid;
     }
 
+    event ProofCreated(
+        uint256 indexed id,
+        string title,
+        address indexed creator,
+        uint256 bid
+    );
+
     mapping(uint256 => string) public proofToUsername;
-    Proof[] public proofs;
+    Proof[] private proofs;
 
     function createProof(
-        string memory provertitle,
+        string memory title,
         string memory description,
-        string memory computation_details,
+        string memory computationDetails,
         uint256 deadline,
-        string memory prooftype, 
+        string memory proofType, 
         uint256 bid,
-        uint256 min_rating, 
+        uint256 minRating, 
         string memory username
     ) public {
+        require(bytes(title).length > 0, "Title required");
+        require(deadline > block.timestamp, "Deadline must be in future");
+
+        uint256 newId = proofs.length;
+
         proofs.push(Proof({
-            id: proofs.length,  // Assuming the id is the index in the array
-            provertitle: provertitle,
+            id: newId,
+            title: title,
             description: description,
-            computation_details: computation_details,
+            computationDetails: computationDetails,
             deadline: deadline,
-            prooftype: prooftype,
-            bid: bid,
-            min_rating: min_rating
+            proofType: proofType,
+            minRating: minRating,
+            bid: bid
         }));
-        
-        uint256 proofId = proofs.length - 1;
-        proofToUsername[proofId] = username;
+
+        proofToUsername[newId] = username;
+        emit ProofCreated(newId, title, msg.sender, bid);
     }
 
+    function getProof(uint256 proofId) public view returns (Proof memory) {
+        require(proofId < proofs.length, "Invalid proofId");
+        return proofs[proofId];
+    }
 
-function getProofBid(uint256 proofId) public view returns (uint256) {
-    return proofs[proofId].bid;
-}
-function getminratings(uint proofId) public view returns (uint256) {
-    return proofs[proofId].min_rating;
-}
+    function getProofBid(uint256 proofId) public view returns (uint256) {
+        require(proofId < proofs.length, "Invalid proofId");
+        return proofs[proofId].bid;
+    }
+
+    function getMinRating(uint256 proofId) public view returns (uint256) {
+        require(proofId < proofs.length, "Invalid proofId");
+        return proofs[proofId].minRating;
+    }
+
+    function totalProofs() public view returns (uint256) {
+        return proofs.length;
+    }
 }
